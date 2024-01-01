@@ -57,7 +57,7 @@ function App() {
         <Route path="/contact" element={<Conatct />} />
         <Route path="/contactform" element={<ConatctForm />} />
       </Routes>
-    </HashRouter>
+    </Router>
   );
 
 }
