@@ -1,5 +1,5 @@
 import './App.css';
-import {Routes, Route, HashRouter } from "react-router-dom";
+import {Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import Home from './screens/Home/Home';
 import QuiNous from './screens/QuiNous/QuiNous';
 import Tarif from './screens/Tarif/Tarif';
@@ -15,7 +15,7 @@ function App() {
 
   return (
 
-    <HashRouter>
+    <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/siege" element={<QuiNous />} />
