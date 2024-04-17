@@ -1,0 +1,13 @@
+.layout {
+  padding: 40px 60px;
+  background-color: #fcfcfe;
+  margin: 10px auto;
+  background-image: url(../../assets/layout.svg);
+  height: fit-content;
+  width: 1200px;
+}
+@media (max-width:1200px) {
+  .layout{width: 100%;
+    padding: 0px 10px;
+}
+}

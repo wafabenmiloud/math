@@ -1,0 +1,90 @@
+
+.tarif_about_text {
+  width: 100%;
+  margin: auto;
+  text-align: start;
+  padding: 20px ;
+
+  border: 6px solid #b0d694;
+  display: flex;
+  flex-direction: column;
+  
+}
+.tarif_about_text .a {
+  color: #5d5d5f;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  text-decoration: underline;
+}
+.tarif_about_text .button {
+  background-color: #95c761;
+  color: #fff;
+  padding: 6px 50px;
+  border-radius: 50px 25px 50px 25px;
+  font-size: 16px;
+  font-family: "Roboto", serif;
+  margin: 60px 0;
+}
+
+.tarif_about_text h4 {
+  color: #6bb13d;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  font-family: "Roboto", sans-serif;
+}
+.tarif_about_text p {
+  color: #5d5d5f;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+}
+.tarif_about_text span span {
+  color: #5d5d5f;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.tarif_small_p {
+  line-height: 20px;
+  width: 55%;
+}
+
+@media (max-width: 1080px) {
+  .tarif_about_text .a {
+    font-size: 16px;
+  }
+  .tarif_about_text .button {
+    font-size: 12px;
+  }
+  .tarif_about_text div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    height: fit-content;
+  }
+  .tarif_about_text h4 {
+    font-size: 20px;
+  }
+  .tarif_about_text p {
+    font-size: 14px;
+  }
+  .tarif_about_text span {
+    color: #5d5d5f;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+  .tarif_wrapper {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .tarif_small_p {
+    width: 100%;
+    line-height: normal;
+  }
+}

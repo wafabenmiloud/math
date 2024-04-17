@@ -1,0 +1,118 @@
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #b0d694;
+  padding: 25px;
+}
+header .head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+header .logo {
+  width: 141px;
+  height: 55px;
+}
+.head .user {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.head .search_field {
+  border: 1px solid #8d8c8c;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 4px;
+  border-radius: 12px;
+}
+.head .search_field input {
+  border: none;
+  padding: 10px 5px;
+}
+.head .search_field input::placeholder {
+  color: #e2e2ea;
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: left;
+}
+.head .search_field input:focus {
+  outline: none;
+}
+.logout:hover {
+  cursor: pointer;
+  color: #fff;
+  background-color: #6bb13d;
+}
+.logout{
+  color: #6bb13d;
+  border: 2px solid #6bb13d;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+
+  background-color: transparent;
+  font-weight: 400;
+}
+@media (max-width: 600px) {
+
+  header .head {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+  }
+  header .logo {
+    width: 100%;
+  }
+  .head .user {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+  .head .search_field {
+    border: 1px solid #8d8c8c;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 4px;
+    border-radius: 12px;
+    width: 200px;
+    height: 25px;
+  }
+  .head .search_field input {
+    border: none;
+    width: 150px;
+    height: 5px;
+  }
+  .head .search_field input::placeholder {
+    color: #e2e2ea;
+    font-family: Inter;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 14.52px;
+    text-align: left;
+  }
+  .head .search_field input:focus {
+    outline: none;
+  }
+  .logout:hover {
+    cursor: pointer;
+  }
+}

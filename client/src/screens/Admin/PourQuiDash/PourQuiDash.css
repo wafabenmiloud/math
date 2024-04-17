@@ -1,0 +1,171 @@
+
+.pour_qui_dash_about_text {
+  width: 100%;
+}
+.pour_qui_dash_banner {
+  width: 100%;
+}
+.pour_qui_dash_bio {
+  width: 100%;
+  margin: 40px 0;
+  padding: 0 30px;
+}
+.pour_qui_dash_banner img {
+  width: 100%;
+}
+.pour_qui_dash_about_text h4 {
+  color: #6bb13d;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  font-family: "Roboto", serif;
+  line-height: 30px;
+}
+.pour_qui_dash_bio h3 {
+  color: #6bb13d;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  font-family: "Roboto", serif;
+  line-height: 30px;
+}
+.pour_qui_dash_about_text h1 {
+  color: #6bb13d;
+  font-size: 65px;
+  font-style: normal;
+  font-weight: 400;
+  font-family: "Roboto", serif;
+}
+.pour_qui_dash_about_text p,
+.pour_qui_dash_bio p {
+  color: #5d5d5f;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.pour_qui_dash_wrapper {
+  width: 100%;
+  margin: auto;
+  text-align: start;
+  padding: 35px 10px 5px 20px;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0px;
+  height: 100%;
+}
+.pour_qui_dash_section_wrapper {
+  width: 100%;
+  margin: auto;
+  text-align: start;
+  padding: 35px 10px 5px 20px;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0px;
+  height: 100%;
+}
+.pour_qui_dash_wrapper .aa , 
+.pour_qui_dash_section_wrapper a {
+  background-color: #6bb13d !important;
+  color: white;
+  padding: 6px 40px;
+  border-radius: 50px 25px 50px 25px;
+  font-size: 14px;
+  font-family: "Roboto", serif;
+  margin: 15px 0;
+}
+.arrow {
+  background-color: transparent !important;
+  color: #6bb13d !important
+    ;
+  padding: 0px !important;
+  border-radius: 0px !important;
+  font-size: 80px !important;
+  margin: 0 !important;
+  font-weight: 300 !important;
+}
+.pour_qui_dash_contact {
+  width: 100%;
+  margin: auto;
+  text-align: start;
+  padding: 5px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  align-items: center;
+}
+.pour_qui_dash_title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  height: 70px;
+}
+.pourqui_layout {
+  padding: 40px 60px;
+  background-color: #fcfcfe;
+  margin: 10px auto;
+  background-image: url(../../../assets/layout.svg);
+  height: fit-content;
+  width: 1200px;
+  
+}
+@media (max-width:1200px) {
+  .pourqui_layout{width: 100%;
+    padding: 0px 10px;
+}
+}
+@media (max-width: 1080px) {
+  .pour_qui_dash_about_text h4 {
+    font-size: 18px;
+  }
+  .pour_qui_dash_bio h3 {
+    font-size: 20px;
+  }
+  .pour_qui_dash_about_text h1 {
+    font-size: 50px;
+  }
+  .pour_qui_dash_about_text p,
+  .pour_qui_dash_bio p {
+    font-size: 14px;
+  }
+
+  .pour_qui_dash_wrapper {
+    background-image: none;
+  }
+  .pour_qui_dash_section_wrapper {
+    background-image: none;
+  }
+
+  .pour_qui_dash_contact {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: fit-content;
+    
+  }
+  .pour_qui_dash_title {
+    justify-content: flex-start;
+    text-align: start;
+  }
+}

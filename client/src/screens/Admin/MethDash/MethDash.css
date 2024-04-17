@@ -1,0 +1,111 @@
+
+.meth_dash_about_text {
+  width: 100%;
+  padding: 0;
+}
+.meth_dash_banner {
+  width: 100%;
+  
+}
+.meth_dash_bio {
+  width: 100%;
+  margin: 60px 0 0px 0;
+  padding: 0 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
+.meth_dash_banner img {
+  width: 100%;
+}
+.meth_dash_about_text h4 {
+  color: #6bb13d;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  font-family: "Roboto", serif;
+  line-height: 30px;
+}
+.meth_dash_bio h3 {
+  color: #6bb13d;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 400;
+  font-family: "Roboto", serif;
+  line-height: 30px;
+}
+
+.meth_dash_about_text p {
+  color: #5d5d5f;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+.meth_dash_about_text span {
+  color: #5d5d5f;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+}
+.meth_dash_wrapper {
+  width: 100%;
+  text-align: start;
+  padding: 0px 10px 50px 20px;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0px;
+  height: 100%;
+}
+.meth_dash_wrapper2 {
+  width: 100%;
+  text-align: start;
+  padding: 0px 10px 50px 20px;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0px;
+  height: 100%;
+}
+.wrapper2 {
+  padding: 0px 30px 50px 40px;
+}
+
+@media (max-width: 1080px) {
+  .meth_dash_about_text h4 {
+    font-size: 16px;
+  }
+  .meth_dash_bio h3 {
+    font-size: 22px;
+  }
+  .meth_dash_about_text p {
+    font-size: 14px;
+  }
+  .meth_dash_about_text span {
+    font-size: 14px;
+  }
+  .meth_dash_wrapper {
+    background-image: none;
+  }
+  .meth_dash_wrapper2 {
+    background-image: none;
+  }
+}

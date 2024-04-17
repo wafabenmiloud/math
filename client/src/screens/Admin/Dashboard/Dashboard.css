@@ -1,0 +1,272 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 15px 40px;
+  background-color: white;
+}
+.dashboard_wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+.add:hover {
+  cursor: pointer;
+}
+.dashboard_buttons_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 20%;
+  text-align: start;
+  border-right: 1px solid #b0d694;
+  padding: 20px;
+}
+.dashboard_content {
+  width: 80%;
+}
+.dashboard_buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.dashboard_footer {
+  background-color: #fffcdc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  width: 100%;
+  border-radius: 12px;
+  padding: 15px 0;
+}
+.dashboard_footer p {
+  color: #347011;
+  font-size: 14px;
+  font-weight: 600;
+}
+.dashboard_footer a {
+  background-color: #6bb13d;
+  color: white;
+  padding: 10px 18px;
+  font-size: 14px;
+  gap: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+.dashboard_wrapper h2 {
+  color: #75ba46;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  font-family: "Roboto", serif;
+  line-height: 24px;
+  padding: 0px 0px 0px 10px;
+}
+.dashboard_buttonVisible {
+  color: #828282;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: normal;
+  background-color: transparent;
+  margin: 10px 0;
+  width: 100% !important;
+  text-align: start;
+  padding: 15px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+}
+.dashboard_buttonVisible:hover,
+.dashboard_buttonVisible.active {
+  background-color: #fffcdc !important;
+  color: #347011 !important;
+  font-weight: 500 !important;
+}
+.dropdown_wrapper{
+  width: 300px;
+}
+.dash_dropdown {
+  position: absolute;
+  background-color: #fffcdc;
+  display: block;
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  z-index: 9999;
+  margin-top: 0px;
+  border-radius: 0px 0px 15px 15px;
+  padding: 15px 15px 15px 40px;
+  width: 300px;
+}
+.dash_dropdown .col {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.dash_dropdown .border {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
+
+.dash_dropdown_buttonVisible {
+  padding: 0.7rem 0rem;
+  background: transparent;
+  color: #347011;
+  font-size: 16px;
+  font-weight: 400;
+  width: 100%;
+  text-align: start;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.dash_dropdown_buttonVisible:hover,
+.dash_dropdown_buttonVisible.active {
+  text-decoration: underline 6px solid #bcd48c !important;
+}
+.control_buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.edit_button_wrapper {
+  background-color: #75ba4638;
+  padding: 12px 15px;
+  border: 1px solid #75ba46;
+  border-radius: 10px;
+  color: #75ba46;
+  font-size: 16px;
+  display: flex;
+  flex-direction: row !important;
+  justify-content: space-around;
+  align-items: center;
+}
+.edit_button_wrapper:hover,
+.delete_button_wrapper:hover {
+  background-color: #fff;
+  cursor: pointer;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  /*box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;*/
+}
+
+.edit_button {
+  color: #75ba46;
+  font-size: 40px;
+}
+.delete_button_wrapper {
+  background-color: #ff000017;
+  color: #ff0000;
+  padding: 12px 15px;
+  border: 1px solid #ff0000;
+  border-radius: 10px;
+  font-size: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.delete_button {
+  color: #ff0000;
+  font-size: 40px;
+}
+
+@media (max-width: 1280px) {
+  .dashboard {
+    padding: 15px 10px;
+  }
+  .dashboard_wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    min-height: 800px;
+  }
+  .dashboard_buttons_wrapper {
+    width: 20%;
+    padding-right: 4px;
+  }
+  .dashboard_content {
+    width: 80%;
+  }
+  .dashboard_buttons {
+    width: 100%;
+  }
+
+  .dashboard_footer p {
+    color: #347011;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 0 4px;
+  }
+  .dashboard_footer a {
+    padding: 5px 5px;
+    font-size: 11px;
+  }
+  .dashboard_wrapper h2 {
+    font-size: 16px;
+  }
+}
+@media (min-width: 769px) {
+  .none2 {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  .dashboard_buttons_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    padding-right: 20px;
+    border: none;
+  }
+  .dashboard_content {
+    width: 100%;
+  }
+  .dashboard_buttons {
+    width: 100%;
+  }
+  .none {
+    display: none;
+  }
+
+  .dashboard_footer p {
+    color: #347011;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .dashboard_footer a {
+    background-color: #6bb13d;
+    color: white;
+    padding: 10px 18px;
+    font-size: 14px;
+    gap: 10px;
+    border-radius: 10px;
+    text-align: center;
+  }
+}
