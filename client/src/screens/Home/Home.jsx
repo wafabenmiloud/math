@@ -160,26 +160,20 @@ const Home = () => {
           return (
             <>
               {" "}
-              <div className="home_wrapper">
-                <div className="home_about_text">
+              <div class="home_wrapper">
+                <div class="home_about_text">
                   <div dangerouslySetInnerHTML={{ __html: section.content }} />
                 </div>
-                <div className="home_about_slider">
+                <div class="home_about_slider">
                   <Slider {...settings2} initialSlide={currentSlides2[index]}>
                     {section.files.map((image, index) => (
-                      <div key={index}>
-                        <div
-                          style={{ width: "100%" }}
-                          className={` ${
-                            index === currentSlides2[index] ? "active" : ""
-                          }`}
-                        >
-                          <img
-                            src={`/uploads/${image}`}
-                            alt="image_exercice"
-                            style={{ width: "100%" }}
-                          />
-                        </div>
+                      <div
+                        key={index}
+                        class={` ${
+                          index === currentSlides2[index] ? "active" : ""
+                        }`}
+                      >
+                        <img src={`/uploads/${image}`} alt="image_exercice" />
                       </div>
                     ))}
                   </Slider>

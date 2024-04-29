@@ -30,7 +30,15 @@ const Dashboard = ({ children }) => {
                 Présentation
                
               </NavLink>
-              <div
+              <NavLink className="dashboard_buttonVisible" to="/quinousdash">
+              Qui sommes nous ?
+               
+              </NavLink>
+              <NavLink className="dashboard_buttonVisible" to="/tarifdash">
+              Cours et tarifs
+               
+              </NavLink>
+              {/*        <div
                 onMouseEnter={handleDropdown}
                 onMouseLeave={handleDropdown}
                 className="dropdown_wrapper"
@@ -68,7 +76,8 @@ const Dashboard = ({ children }) => {
                     </div>{" "}
                   </div>
                 )}
-              </div>
+              </div> */}
+      
               <NavLink className="dashboard_buttonVisible" to="/quidash">
                 Pour qui ?{" "}
                

@@ -23,12 +23,18 @@
   font-weight: 500;
 }
 .qui_wrapper {
-  width: 97%;
+  width: 90%;
   margin: auto;
   text-align: start;
-  padding: 5px 38px;
-  
+  padding: 40px 40px 25px;
   border: 6px solid #b0d694;
+ /* background-image: url(../../assets/border/bg_border.svg);
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: 100% 100%;
+  background-position: center;*/
 
   display: flex;
   flex-direction: row;
@@ -36,8 +42,15 @@
   align-items: center;
   gap: 10px;
 }
+@media (max-width: 1200px) {
+  .qui_wrapper {
+    width: 90%;
+    padding: 100px 20px;
 
-@media (max-width: 1080px) {
+  }
+}
+
+@media (max-width: 1024px) {
   .qui_about_slider {
     width: 100%;
   }
@@ -50,8 +63,6 @@
   }
 
   .qui_wrapper {
-    padding: 45px 28px;
-   
     display: flex;
     flex-direction: column;
   }
