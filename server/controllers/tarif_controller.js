@@ -89,7 +89,7 @@ const getTarif = async (req, res) => {
   try {
     const query = `
         SELECT *
-        FROM tarifs
+        FROM tarifs ORDER BY id
       `;
     const result = await client.query(query);
 

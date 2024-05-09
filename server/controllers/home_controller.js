@@ -5,7 +5,7 @@ const { dbConnect } = require("../db.js");
 const addSlides = async (req, res) => {
   try {
 
-    const { slides,button } = req.body;
+    const { slides, button } = req.body;
     const { token } = req.cookies;
     jwt.verify(token, process.env.JWT_SECRET, {}, async (err, info) => {
       if (err) throw err;
@@ -24,7 +24,7 @@ const addSlides = async (req, res) => {
           VALUES ($1,$2)
           RETURNING *;
         `;
-        const values = [slides,button];
+        const values = [slides, button];
         const result = await client.query(query, values);
         const slidesDoc = result.rows[0];
         res.json(slidesDoc);
@@ -47,7 +47,7 @@ const updateSlides = async (req, res) => {
 
     jwt.verify(token, process.env.JWT_SECRET, {}, async (err, info) => {
       if (err) throw err;
-      const { id, slides,button } = req.body;
+      const { id, slides, button } = req.body;
       const client = await dbConnect();
       try {
         const query = `
@@ -65,7 +65,7 @@ const updateSlides = async (req, res) => {
             WHERE id = $3
             RETURNING *;
           `;
-        const updateValues = [slides,button, id];
+        const updateValues = [slides, button, id];
         const updatedResult = await client.query(updateQuery, updateValues);
         const updatedDoc = updatedResult.rows[0];
         res.json(updatedDoc);
@@ -319,10 +319,13 @@ const updateSection = async (req, res) => {
     const { token } = req.cookies;
     if (!token) return res.status(401).json({ errorMessage: "Unauthorized" });
 
+    const { id, content } = req.body;
+    const files = req.files || []; 
+    const newFileNames = files.map(file => file.filename); 
+
     jwt.verify(token, process.env.JWT_SECRET, {}, async (err, info) => {
       if (err) throw err;
-      const { id, content } = req.body;
-      const files = req.files;
+
 
       const client = await dbConnect();
       try {
@@ -336,12 +339,9 @@ const updateSection = async (req, res) => {
           return res.status(404).json("section not found");
         }
 
-        let imageURLs = secDoc.files;
-        let newFiles = [];
-
-        if (files && files.length > 0) {
-          newFiles = files.map(file => file.filename);
-        }
+        let imageURLs = secDoc.files || []; 
+        imageURLs = imageURLs.concat(newFileNames);
+        
 
         const updateQuery = `
             UPDATE home_sections 
@@ -349,7 +349,7 @@ const updateSection = async (req, res) => {
             WHERE id = $3
             RETURNING *;
           `;
-        const updateValues = [content, newFiles.length > 0 ? JSON.stringify(newFiles) : JSON.stringify(imageURLs), id];
+        const updateValues = [content, JSON.stringify(imageURLs), id];
         const updatedResult = await client.query(updateQuery, updateValues);
         const updatedSecDoc = updatedResult.rows[0];
         res.json(updatedSecDoc);
@@ -372,7 +372,7 @@ const getSection = async (req, res) => {
   try {
     const query = `
         SELECT *
-        FROM home_sections 
+        FROM home_sections ORDER BY id
       `;
     const result = await client.query(query);
 
@@ -460,6 +460,56 @@ const deleteSection = async (req, res) => {
     res.status(401).json({ errorMessage: "Unauthorized" });
   }
 };
+const deleteFile = async (req, res) => {
+  try {
+    const { token } = req.cookies;
+    if (!token) return res.status(401).json({ errorMessage: "Unauthorized" });
+
+    jwt.verify(token, process.env.JWT_SECRET, {}, async (err, info) => {
+      if (err) throw err;
+      const { id } = req.params;
+      const { fileName } = req.body;
+
+      const client = await dbConnect();
+      try {
+        const secQuery = `
+            SELECT files FROM home_sections WHERE id = $1;
+          `;
+        const secValues = [id];
+        const secResult = await client.query(secQuery, secValues);
+        const secDoc = secResult.rows[0];
+
+        if (!secDoc) {
+          return res.status(404).json("Section files not found");
+        }
+        const { files } = secDoc;
+        const updatedFiles = files.filter(file => file !== fileName);
+
+        const updateQuery = `
+            UPDATE home_sections 
+            SET files = $1
+            WHERE id = $2
+            RETURNING *;
+          `;
+        const updateValues = [JSON.stringify(updatedFiles), id];
+        const updatedResult = await client.query(updateQuery, updateValues);
+
+
+        res.json({ message: "File deleted successfully", updatedSection: updatedResult.rows[0] });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ errorMessage: "Error deleting file" });
+      } finally {
+        client.release();
+      }
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(401).json({ errorMessage: "Unauthorized" });
+  }
+};
+
+
 
 //ssection
 const addSSection = async (req, res) => {
@@ -520,7 +570,7 @@ const updateSSection = async (req, res) => {
 
     jwt.verify(token, process.env.JWT_SECRET, {}, async (err, info) => {
       if (err) throw err;
-      const { id, title, link ,button} = req.body;
+      const { id, title, link, button } = req.body;
 
       const client = await dbConnect();
       try {
@@ -539,7 +589,7 @@ const updateSSection = async (req, res) => {
             WHERE id = $5
             RETURNING *;
           `;
-        const updateValues = [title, link, req.file ? `${req.file.filename}` : ssectionDoc.cover, button,id];
+        const updateValues = [title, link, req.file ? `${req.file.filename}` : ssectionDoc.cover, button, id];
         const updatedResult = await client.query(updateQuery, updateValues);
         const updatedssectionDoc = updatedResult.rows[0];
 
@@ -566,7 +616,7 @@ const getSSection = async (req, res) => {
   try {
     const query = `
         SELECT *
-        FROM ssections 
+        FROM ssections ORDER BY id
       `;
     const result = await client.query(query);
 
@@ -673,5 +723,5 @@ module.exports = {
   updateSSection,
   getSSection,
   getSSectionByID,
-  deleteSSection
+  deleteSSection, deleteFile
 };

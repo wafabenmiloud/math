@@ -105,7 +105,7 @@ const getQuiNous = async (req, res) => {
   try {
     const query = `
         SELECT *
-        FROM quinous 
+        FROM quinous ORDER BY id 
       `;
     const result = await client.query(query);
 

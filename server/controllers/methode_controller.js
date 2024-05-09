@@ -106,7 +106,7 @@ const getMethode = async (req, res) => {
   try {
     const query = `
         SELECT *
-        FROM methodes 
+        FROM methodes  ORDER BY id
       `;
     const result = await client.query(query);
 

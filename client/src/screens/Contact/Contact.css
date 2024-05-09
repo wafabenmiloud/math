@@ -49,7 +49,7 @@
   margin: auto;
   text-align: start;
   padding: 35px 28px 20% 25px;  
-  border: 6px solid #b0d694;
+  border: 4px solid #b0d694;
 
   display: flex;
   flex-direction: row;
@@ -63,7 +63,7 @@
     margin: auto;
     text-align: start;
     padding: 35px 28px 20% 25px;
-    border: 6px solid #b0d694;
+    border: 4px solid #b0d694;
     background: none;
     display: flex;
     flex-direction: column;

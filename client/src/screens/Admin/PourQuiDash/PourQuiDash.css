@@ -62,7 +62,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 0px;
-  height: 100%;
+min-height: 600px;
 }
 .pour_qui_dash_section_wrapper {
   width: 100%;

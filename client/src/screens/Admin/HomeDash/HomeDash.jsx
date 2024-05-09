@@ -167,7 +167,7 @@ const HomeDash = () => {
               </Slider>
               <br />
               <br />
-              <Link to="/dashboard">{slide.button}</Link>
+              <Link to="/actual">{slide.button}</Link>
             </div>
             <br />
             <br />

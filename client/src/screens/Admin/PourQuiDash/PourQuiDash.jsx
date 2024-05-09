@@ -138,7 +138,7 @@ const PourQuiDash = () => {
                   </div>
                   <div dangerouslySetInnerHTML={{ __html: sec.content }} />
                 </div>
-                <Link to="#" className="aa">
+                <Link to={`/${sec.lien}`} className="aa">
                   {sec.button}
                 </Link>{" "}
                 <div className="control_buttons">

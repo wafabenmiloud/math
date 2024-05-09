@@ -4,7 +4,7 @@ import Editor from "../../../components/Editor/Editor";
 import "./HomeDash.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { MdAddToPhotos } from "react-icons/md";
+import { MdAddToPhotos, MdClose  } from "react-icons/md";
 import { BsArrowLeftShort } from "react-icons/bs";
 import Popup from "../Popups/Popup";
 
@@ -18,7 +18,11 @@ export default function CreateSection() {
 
   const handleFileChange = (ev) => {
     const selectedFiles = Array.from(ev.target.files);
-    setFiles(selectedFiles);
+    setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
+  };
+
+  const removeFile = (indexToRemove) => {
+    setFiles((prevFiles) => prevFiles.filter((_, index) => index !== indexToRemove));
   };
 
   async function createNewSection() {
@@ -51,7 +55,9 @@ export default function CreateSection() {
       <form
         className="dash_create_form"
       >
-        <h2>Média</h2>
+        <h2>Média <span style={{ fontSize: "10px" }}>
+            (.jpg, .jpeg, .png, .gif)
+          </span></h2>
         <label htmlFor="fileInput">
           <MdAddToPhotos
             color="#000"
@@ -70,9 +76,27 @@ export default function CreateSection() {
         {files.length > 0 && (
           <div>
             {files.map((file, index) => (
-              <div key={index}>
-                <img src={URL.createObjectURL(file)} alt="Selected File" width={35} height={35}/>
+              <div key={index} style={{ position: "relative", display: "inline-block", marginRight: "10px" }}>
+              <div style={{ position: "relative", display: "inline-block" }}>
+                <img src={URL.createObjectURL(file)} alt="Selected File" width={35} height={35} />
+                <div style={{
+                  position: "absolute",
+                  top: "-10px",
+                  right: "-10px",
+                  backgroundColor: "white",
+                  borderRadius: "50%",
+                  boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.5)",
+                  padding: "2px",
+                  cursor: "pointer"
+                }}>
+                  <MdClose
+                    size={20}
+                    onClick={() => removeFile(index)}
+                  />
+                </div>
               </div>
+            </div>
+            
             ))}
           </div>
         )}</div>

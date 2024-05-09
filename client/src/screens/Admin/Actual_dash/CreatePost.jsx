@@ -15,19 +15,16 @@ export default function CreatePost() {
   const [content, setContent] = useState("");
   const [file, setFile] = useState(null);
   const [type, setType] = useState("");
+
   const navigate = useNavigate();
   const [showPopup, setShowPopup] = useState(false);
   const [showPopup2, setShowPopup2] = useState(false);
-  const getCurrentDate = () => {
-    // Create a new Date object from the string date value
-    const currentDate = new Date(date);
 
-    // Get the year, month, and day from the Date object
+  const getCurrentDate = () => {
+    const currentDate = new Date(date);
     const year = currentDate.getFullYear();
     const month = String(currentDate.getMonth() + 1).padStart(2, "0");
     const day = String(currentDate.getDate()).padStart(2, "0");
-
-    // Return the formatted date string
     return `${year}-${month}-${day}`;
   };
 
@@ -64,12 +61,9 @@ export default function CreatePost() {
 
   return (
     <div className="create_form_wrapper">
-           <BsArrowLeftShort onClick={() => setShowPopup2(true)} className="arr" />
+      <BsArrowLeftShort onClick={() => setShowPopup2(true)} className="arr" />
 
-      <form
-        className="create_form"
-       
-      >
+      <form className="create_form">
         <h2>Date</h2>
 
         <input
@@ -151,7 +145,12 @@ export default function CreatePost() {
             <label>Médias</label>
           </div>
         </div>
-        <h2>Média</h2>
+        <h2>
+          Média{" "}
+          <span style={{ fontSize: "10px" }}>
+            (.jpg, .jpeg, .png, .gif)
+          </span>
+        </h2>
         <label htmlFor="fileInput">
           <MdAddToPhotos
             color="#000"
@@ -172,10 +171,10 @@ export default function CreatePost() {
           </div>
         )}
         <h2>Description</h2>
-
         <Editor value={content} onChange={setContent} />
-
-        <button type="button" onClick={() => setShowPopup(true)}>Ajouter</button>
+        <button type="button" onClick={() => setShowPopup(true)}>
+          Ajouter
+        </button>
       </form>
       {showPopup && (
         <Popup

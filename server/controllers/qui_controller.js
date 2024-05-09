@@ -95,7 +95,7 @@ const getQui = async (req, res) => {
   try {
     const query = `
         SELECT *
-        FROM qui
+        FROM qui ORDER BY id
       `;
     const result = await client.query(query);
 
@@ -277,7 +277,7 @@ const getQuiSec = async (req, res) => {
   try {
     const query = `
         SELECT *
-        FROM qui_section
+        FROM qui_section ORDER BY id
       `;
     const result = await client.query(query);
 

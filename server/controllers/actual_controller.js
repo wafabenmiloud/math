@@ -1,5 +1,7 @@
 const jwt = require("jsonwebtoken");
 const { dbConnect } = require("../db.js");
+const path = require('path');
+const fs = require('fs');
 
 
 const addPost = async (req, res) => {
@@ -201,9 +203,38 @@ const deletePost = async (req, res) => {
   }
 };
 
+
+const uploadFile = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ errorMessage: "No file uploaded" });
+    }
+    const { token } = req.cookies;
+
+    jwt.verify(token, process.env.JWT_SECRET, {}, async (err, info) => {
+      if (err) throw err;
+
+      try {
+        const doc = req.file.filename;
+        const fileUrl = `/uploads/${doc}`;
+
+
+        res.json({ url: fileUrl });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ errorMessage: "Error uploading file" });
+      }
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(401).json({ errorMessage: "Unauthorized" });
+  }
+};
+
+
 module.exports = {
   addPost,
   updatePost,
   getPost, getPostByID,
-  deletePost
+  deletePost, uploadFile
 };

@@ -55,10 +55,12 @@ const updateEx = async (req, res) => {
     const { token } = req.cookies;
     if (!token) return res.status(401).json({ errorMessage: "Unauthorized" });
 
+    const { id, title, content } = req.body;
+    const files = req.files || []; 
+    const newFileNames = files.map(file => file.filename);
+
     jwt.verify(token, process.env.JWT_SECRET, {}, async (err, info) => {
       if (err) throw err;
-      const { id, title, content } = req.body;
-      const files = req.files;
 
       const client = await dbConnect();
       try {
@@ -72,12 +74,9 @@ const updateEx = async (req, res) => {
           return res.status(404).json("Exercice not found");
         }
 
-        let imageURLs = exDoc.files;
-        let newFiles = [];
-
-        if (files && files.length > 0) {
-          newFiles = files.map(file => file.filename);
-        }
+        let imageURLs = exDoc.files || []; 
+        imageURLs = imageURLs.concat(newFileNames); 
+       
 
         const updateQuery = `
             UPDATE exercices 
@@ -85,7 +84,7 @@ const updateEx = async (req, res) => {
             WHERE id = $4
             RETURNING *;
           `;
-        const updateValues = [title, content, newFiles.length > 0 ? JSON.stringify(newFiles) : JSON.stringify(imageURLs), id];
+        const updateValues = [title, content, JSON.stringify(imageURLs), id];
         const updatedResult = await client.query(updateQuery, updateValues);
         const updatedExDoc = updatedResult.rows[0];
         res.json(updatedExDoc);
@@ -108,7 +107,7 @@ const getEx = async (req, res) => {
   try {
     const query = `
         SELECT *
-        FROM exercices 
+        FROM exercices  ORDER BY id
       `;
     const result = await client.query(query);
 
@@ -196,10 +195,57 @@ const deleteEx = async (req, res) => {
     res.status(401).json({ errorMessage: "Unauthorized" });
   }
 };
+const deleteExFile = async (req, res) => {
+  try {
+    const { token } = req.cookies;
+    if (!token) return res.status(401).json({ errorMessage: "Unauthorized" });
 
+    jwt.verify(token, process.env.JWT_SECRET, {}, async (err, info) => {
+      if (err) throw err;
+      const { id } = req.params;
+      const { fileName } = req.body;
+
+      const client = await dbConnect();
+      try {
+        const secQuery = `
+            SELECT files FROM exercices WHERE id = $1;
+          `;
+        const secValues = [id];
+        const secResult = await client.query(secQuery, secValues);
+        const secDoc = secResult.rows[0];
+
+        if (!secDoc) {
+          return res.status(404).json("Section files not found");
+        }
+        const { files } = secDoc;
+        const updatedFiles = files.filter(file => file !== fileName);
+
+        const updateQuery = `
+            UPDATE exercices 
+            SET files = $1
+            WHERE id = $2
+            RETURNING *;
+          `;
+        const updateValues = [JSON.stringify(updatedFiles), id];
+        const updatedResult = await client.query(updateQuery, updateValues);
+
+
+        res.json({ message: "File deleted successfully", updatedSection: updatedResult.rows[0] });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ errorMessage: "Error deleting file" });
+      } finally {
+        client.release();
+      }
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(401).json({ errorMessage: "Unauthorized" });
+  }
+};
 module.exports = {
   addEx,
   updateEx,
   getEx, getExByID,
-  deleteEx
+  deleteEx, deleteExFile
 };

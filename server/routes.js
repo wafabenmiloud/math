@@ -6,8 +6,8 @@ const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const { login, signUp, verifyCode, logout, authenticateToken } = require("./controllers/user_controller");
 const { addContact, getContact } = require("./controllers/contact_controller");
-const { addPost, updatePost, getPost, deletePost, getPostByID } = require('./controllers/actual_controller');
-const { addEx, updateEx, getEx, deleteEx, getExByID } = require('./controllers/exercice_controller');
+const { addPost, updatePost, getPost, deletePost, getPostByID, uploadFile } = require('./controllers/actual_controller');
+const { addEx, updateEx, getEx, deleteEx, getExByID , deleteExFile} = require('./controllers/exercice_controller');
 const { addMethode, updateMethode, getMethode, deleteMethode, getMethodeByID } = require('./controllers/methode_controller');
 const { addQuiNous, updateQuiNous, getQuiNous, deleteQuiNous, getQuiNousByID } = require('./controllers/quinous_controller');
 const { addTarif, updateTarif, getTarif, deleteTarif, getTarifByID } = require('./controllers/tarif_controller');
@@ -23,7 +23,7 @@ const { updateSlides,
   updateSSection,
   getSSection,
   getSSectionByID,
-  deleteSSection } = require('./controllers/home_controller');
+  deleteSSection, deleteFile } = require('./controllers/home_controller');
 
 
 // Define storage for multer
@@ -47,10 +47,27 @@ const fileFilter = (req, file, cb) => {
     cb(new Error('Invalid file type'));
   }
 };
+const fileFilter2 = (req, file, cb) => {
+  // Allow only certain file types, adjust as needed
+  const allowedFileTypes = ['.doc', '.pdf', '.docx'];
+  const fileExtension = path.extname(file.originalname).toLowerCase();
+  if (allowedFileTypes.includes(fileExtension)) {
+    cb(null, true);
+  } else {
+    cb(new Error('Invalid file type'));
+  }
+};
+
 const uploadMiddleware = multer({
   storage: storage,
   fileFilter: fileFilter
 });
+const upload = multer({
+  storage: storage,
+  fileFilter: fileFilter2
+});
+
+
 
 
 //user API
@@ -71,18 +88,16 @@ router.post('/slides', addSlides)
 router.put('/slides', updateSlides);
 router.get('/slides', getSlides);
 router.get('/slides/:id', getSlidesByID);
-
 router.post('/bio', addBio)
 router.put('/bio', updateBio);
 router.get('/bio', getBio);
 router.get('/bio/:id', getBioByID);
-
 router.post('/section', uploadMiddleware.array('files', 10), addSection);
 router.put('/section', uploadMiddleware.array('files', 10), updateSection);
 router.delete('/section/:id', deleteSection);
+router.delete('/file/:id', deleteFile);
 router.get('/section', getSection);
 router.get('/section/:id', getSectionByID);
-
 router.post('/ssection', uploadMiddleware.single('file'), addSSection);
 router.put('/ssection', uploadMiddleware.single('file'), updateSSection);
 router.delete('/ssection/:id', deleteSSection);
@@ -95,6 +110,7 @@ router.put('/post', uploadMiddleware.single('file'), updatePost);
 router.delete('/post/:id', deletePost);
 router.get('/post', getPost);
 router.get('/post/:id', getPostByID);
+router.post('/upload', upload.single('file'), uploadFile);
 
 //methode API
 router.post('/meth', uploadMiddleware.single('file'), addMethode);
@@ -109,8 +125,6 @@ router.put('/qui', uploadMiddleware.single('file'), updateQui);
 router.delete('/qui/:id', deleteQui);
 router.get('/qui', getQui);
 router.get('/qui/:id', getQuiByID);
-
-
 router.post('/quisec', addQuiSec);
 router.put('/quisec', updateQuiSec);
 router.delete('/quisec/:id', deleteQuiSec);
@@ -135,6 +149,7 @@ router.get('/tarif/:id', getTarifByID);
 router.post('/ex', uploadMiddleware.array('files', 10), addEx);
 router.put('/ex', uploadMiddleware.array('files', 10), updateEx);
 router.delete('/ex/:id', deleteEx);
+router.delete('/exfile/:id', deleteExFile);
 router.get('/ex', getEx);
 router.get('/ex/:id', getExByID);
 

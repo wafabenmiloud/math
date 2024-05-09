@@ -49,7 +49,7 @@
   text-align: start;
   padding: 0px 10px 50px 20px;
 
-  border: 6px solid #b0d694;
+  border: 4px solid #b0d694;
 
   display: flex;
   flex-direction: column;
@@ -63,7 +63,7 @@
   text-align: start;
   padding: 0px 10px 50px 20px;
   
-  border: 6px solid #b0d694;
+  border: 4px solid #b0d694;
 
   display: flex;
   flex-direction: column;

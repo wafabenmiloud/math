@@ -62,7 +62,6 @@
   font-weight: 400;
   font-family: "Roboto", serif;
   line-height: 18px;
-  height: 10px;
 }
 .home_dash_about_text2 h4 {
   color: #6bb13d;
@@ -70,7 +69,6 @@
   font-style: normal;
   font-weight: 400;
   font-family: "Roboto", serif;
-  line-height: 0px;
 }
 .home_dash_about_text p {
   color: #5d5d5f;
@@ -108,6 +106,7 @@
   justify-content: center;
   align-items: center;
   gap: 0px;
+  min-height: 600px;
 }
 .home_dash_wrapper2 .a {
   background-color: #6bb13d;

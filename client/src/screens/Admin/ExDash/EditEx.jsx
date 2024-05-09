@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Editor from "../../../components/Editor/Editor";
 import "./ExDash.css";
 import axios from "axios";
-import { MdAddToPhotos } from "react-icons/md";
+import { MdAddToPhotos, MdClose } from "react-icons/md";
 import { BsArrowLeftShort } from "react-icons/bs";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,6 @@ export default function EditEx() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [files, setFiles] = useState([]);
-  const [fileURLs, setFileURLs] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [showPopup2, setShowPopup2] = useState(false);
   const navigate = useNavigate();
@@ -26,9 +25,7 @@ export default function EditEx() {
         setTitle(response.data.exDoc.title);
         setContent(response.data.exDoc.content);
         if (response.data.exDoc.files && response.data.exDoc.files.length > 0) {
-          setFileURLs(
-            response.data.exDoc.files.map((cover) => `/uploads/${cover}`)
-          );
+          setFiles(response.data.exDoc.files);
         }
       })
       .catch((error) => {
@@ -37,11 +34,25 @@ export default function EditEx() {
   }, []);
 
   const handleFileChange = (ev) => {
-    setFiles([...files, ...ev.target.files]);
+    const selectedFiles = Array.from(ev.target.files);
+    setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
   };
-
+  const removeFile = async (indexToRemove) => {
+    const fileToRemove = files[indexToRemove];
+    if (typeof fileToRemove === "string") {
+      try {
+        await axios.delete(`/api/exfile/${id}`, {
+          data: { fileName: fileToRemove },
+        });
+      } catch (error) {
+        console.error("Error deleting file:", error);
+      }
+    }
+    setFiles((prevFiles) =>
+      prevFiles.filter((_, index) => index !== indexToRemove)
+    );
+  };
   async function updateEx() {
-
     const formData = new FormData();
     formData.append("title", title);
     formData.append("id", id);
@@ -49,7 +60,9 @@ export default function EditEx() {
 
     if (files.length > 0) {
       files.forEach((file) => {
-        formData.append("files", file);
+        if (file instanceof File) {
+          formData.append("files", file);
+        }
       });
     }
     try {
@@ -70,20 +83,18 @@ export default function EditEx() {
 
   return (
     <div className="dash_create_form_wrapper">
-          <BsArrowLeftShort onClick={() => setShowPopup2(true)} className="arr" />
+      <BsArrowLeftShort onClick={() => setShowPopup2(true)} className="arr" />
 
-      <form
-        className="dash_create_form"
-      >
+      <form className="dash_create_form">
         <h2>Titre</h2>
-
         <input
           type="text"
           value={title}
           onChange={(ev) => setTitle(ev.target.value)}
         />
-
-        <h2>Média</h2>
+        <h2>Média <span style={{ fontSize: "10px" }}>
+            (.jpg, .jpeg, .png, .gif)
+          </span></h2>
         <label htmlFor="fileInput">
           <MdAddToPhotos
             color="#000"
@@ -99,34 +110,62 @@ export default function EditEx() {
           />
         </label>
         <div className="fileurls">
-          {files.length > 0 &&
-            files.map((file, index) => (
-              <div key={index}>
-                <img
-                  src={URL.createObjectURL(file)}
-                  alt={`Selected File ${index}`}
-                />
-              </div>
-            ))}
+          {files.length > 0 && (
+            <div>
+              {files.map((file, index) => (
+                <div
+                  key={index}
+                  style={{
+                    position: "relative",
+                    display: "inline-block",
+                    marginRight: "10px",
+                  }}
+                >
+                  <div
+                    style={{ position: "relative", display: "inline-block" }}
+                  >
+                    {typeof file === "string" ? (
+                      <img
+                        src={`/uploads/${file}`}
+                        alt="Selected File"
+                        width={35}
+                        height={35}
+                      />
+                    ) : (
+                      <img
+                        src={URL.createObjectURL(file)}
+                        alt="Selected File"
+                        width={35}
+                        height={35}
+                      />
+                    )}
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "-10px",
+                        right: "-10px",
+                        backgroundColor: "white",
+                        borderRadius: "50%",
+                        boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.5)",
+                        padding: "2px",
+                        cursor: "pointer",
+                      }}
+                    >
+                      <MdClose size={20} onClick={() => removeFile(index)} />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
-
-        {/* Display existing files */}
-        <div className="fileurls">
-          {files.length == 0 &&
-            fileURLs.map((url, index) => (
-              <div key={index}>
-                <img src={url} alt={`Existing File ${index}`} />
-              </div>
-            ))}
-        </div>
-
         <h2>Description</h2>
-
         <Editor value={content} onChange={setContent} />
-
         <button type="button" onClick={() => setShowPopup(true)}>
           Modifier
-        </button>      </form>{showPopup && (
+        </button>{" "}
+      </form>
+      {showPopup && (
         <Popup
           message="Êtes-vous sûr(e) de vouloir continuer ?"
           onCancel={() => setShowPopup(false)}

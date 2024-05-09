@@ -59,7 +59,9 @@ export default function CreateQui() {
           onChange={(ev) => setTitle(ev.target.value)}
         />
 
-        <h2>Média</h2>
+        <h2>Média <span style={{ fontSize: "10px" }}>
+            (.jpg, .jpeg, .png, .gif)
+          </span></h2>
         <label htmlFor="fileInput">
           <MdAddToPhotos
             color="#000"
