@@ -43,9 +43,6 @@ import MethDash from "./screens/Admin/MethDash/MethDash";
 import ActualDash from "./screens/Admin/Actual_dash/ActualDash";
 import ExDash from "./screens/Admin/ExDash/ExDash";
 import ContactDash from "./screens/Admin/Contact_dash/ContactDash";
-import CreateItem from "./screens/Admin/Dashboard/CreateItem";
-import EditItem from "./screens/Admin/Dashboard/EditItem";
-
 
 
 function Router() {
@@ -58,36 +55,7 @@ function Router() {
                 <Route path="/quisommesnous" element={<QuiNous />} />
                 <Route path="/tarif" element={<Tarif />} />
                 <Route path="/pourqui" element={<PourQui />} />
-                <Route path="/pourquisection/A" element={<PourQuiSection alpha="A" title="Acquisition des connaissances de base grâce à une répétition régulière et encadrée">
-                    <p>Nous retravaillons les notions des années antérieures pour que votre enfant rattrape son retard.
-                    </p>
-                    <p>Nous proposons différentes stratégies d'apprentissage pour qu'il acquiert  une méthode de travail efficace.
-                    </p>
-                    <p>Nous lui redonnons confiance en lui et valorisons ses efforts.
-                    </p>
-                    <p>Grâce à un travail régulier,  il approfondit durablement ses connaissances et il améliore ses résultats.
-                    </p>
-                </PourQuiSection>} />
-                <Route path="/pourquisection/B" element={<PourQuiSection alpha="B" title="Consolidation des connaissances de base grâce à des exercices ciblés">
-                    <p>Nous identifions et retravaillons les lacunes des années antérieures. Votre enfant peut à nouveau suivre normalement le rythme de la classe.
-                    </p>
-                    <p>Nous l'accompagnons dans l'apprentissage des nouvelles notions.
-                    </p>
-                    <p>Grâce à l’acquisition d’une méthode de travail efficace et d’automatismes, il obtient de meilleurs résultats.
-                    </p>
-                    <p>Nous lui redonnons goût aux mathématiques.
-                    </p>
-                </PourQuiSection>} />
-                <Route path="/pourquisection/C" element={<PourQuiSection alpha="C" title="Approfondissement et intégration des connaissances de base dans une vision globale">
-                    <p>Nous approfondissons les connaissances de base et travaillons progressivement les nouvelles notions.
-                    </p>
-                    <p>Nous faisons le lien entre les différents thèmes abordés pour que votre enfant ait une vision plus globale des mathématiques.
-                    </p>
-                    <p>Il acquiert rapidité et précision.
-                    </p>
-                    <p>Il se sent plus sûr de lui et ses résultats en témoignent.
-                    </p>
-                </PourQuiSection>} />
+                <Route path="/pourquisec" element={<PourQuiSection/>}/>
                 <Route path="/methode" element={<Methode />} />
                 <Route path="/exercices" element={<Exercices />} />
                 <Route path="/actual" element={<Actual />} />
@@ -133,8 +101,7 @@ function Router() {
                         <Route path="/editqui/:id" element={<EditQui />} />
                         <Route path="/createquisec" element={<CreateQuiSec />} />
                         <Route path="/editquisec/:id" element={<EditQuiSec />} />
-                        <Route path="/createitem" element={<CreateItem />} />
-                        <Route path="/edititem/:id" element={<EditItem />} />
+                        
                     </>
                 )}
 

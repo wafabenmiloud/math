@@ -77,7 +77,7 @@ export default function CreateSection() {
           <div>
             {files.map((file, index) => (
               <div key={index} style={{ position: "relative", display: "inline-block", marginRight: "10px" }}>
-              <div style={{ position: "relative", display: "inline-block" }}>
+              <div style={{ position: "relative", display: "inline-block", width:"100%" }}>
                 <img src={URL.createObjectURL(file)} alt="Selected File" width={35} height={35} />
                 <div style={{
                   position: "absolute",

@@ -122,7 +122,7 @@ export default function EditEx() {
                   }}
                 >
                   <div
-                    style={{ position: "relative", display: "inline-block" }}
+                    style={{ position: "relative", display: "inline-block" , width:"100%"}}
                   >
                     {typeof file === "string" ? (
                       <img

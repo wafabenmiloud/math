@@ -61,11 +61,12 @@ const ActualDash = () => {
   function renderSection(sectionName) {
     const filteredPosts = posts.filter((data) => data.type === sectionName);
     return (
-      <div  style={{
-        display: "flex",
-        flexDirection: "column",
-       
-      }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         {filteredPosts.map((data, index) => {
           const isExpanded = expandedDiv === index;
           const date =
@@ -87,7 +88,9 @@ const ActualDash = () => {
                   }`}
                 >
                   {" "}
-                  <img src={`/uploads/${data.cover}`} alt="cover" />
+                  {data.cover != "" && (
+                    <img src={`/uploads/${data.cover}`} alt="cover" />
+                  )}
                 </div>
                 <div>
                   <div className="actual_dash_div_date">
@@ -114,7 +117,7 @@ const ActualDash = () => {
                         <div className="control_buttons">
                           <div className="edit_button_wrapper">
                             <Link to={`/edit/${data.id}`}>
-                              <FaRegEdit size={20} className="edit_button" /> 
+                              <FaRegEdit size={20} className="edit_button" />
                             </Link>
                           </div>
                           <div className="delete_button_wrapper">
@@ -123,7 +126,7 @@ const ActualDash = () => {
                               className="delete_button"
                               onClick={() => {
                                 setShowPopup(true);
-                                setSectionIdToDelete(data.id); 
+                                setSectionIdToDelete(data.id);
                               }}
                             />
                           </div>
@@ -159,78 +162,77 @@ const ActualDash = () => {
           </Link>
         </div>
         {showPopup && (
-        <Popup
-          message="Êtes-vous sûr(e) de vouloir continuer ?"
-          onCancel={() => setShowPopup(false)}
-          onConfirm={() => {
-            setShowPopup(false);
-            handleDelete(sectionIdToDelete);
-          }}
-        />
-      )}
+          <Popup
+            message="Êtes-vous sûr(e) de vouloir continuer ?"
+            onCancel={() => setShowPopup(false)}
+            onConfirm={() => {
+              setShowPopup(false);
+              handleDelete(sectionIdToDelete);
+            }}
+          />
+        )}
       </div>
     );
   }
   return (
     <Dashboard>
       <h2>Actualités</h2>
-        <div className="actual_dash">
-      <div className="actual_dash_wrapper">
-        <div className="actual_dash_buttons_wrapper">
-          <div className="actual_dash_buttons">
-            <button
-              onClick={() => toggleSection("ecr")}
-              className={sections.ecr ? "actual_dash_buttonVisible" : ""}
-            >
-              Préparation aux ECR et certificat
-            </button>
-            <button
-              onClick={() => toggleSection("temoin")}
-              className={sections.temoin ? "actual_dash_buttonVisible" : ""}
-            >
-              Témoignages
-            </button>
-            <button
-              onClick={() => toggleSection("centre")}
-              className={sections.centre ? "actual_dash_buttonVisible" : ""}
-            >
-              Ouvrez votre centre mathOtop
-            </button>
-            <button
-              onClick={() => toggleSection("ecole")}
-              className={sections.ecole ? "actual_dash_buttonVisible" : ""}
-            >
-              Vie de l'école
-            </button>
-            <button
-              onClick={() => toggleSection("media")}
-              className={sections.media ? "actual_dash_buttonVisible" : ""}
-            >
-              Médias
-            </button>
+      <div className="actual_dash">
+        <div className="actual_dash_wrapper">
+          <div className="actual_dash_buttons_wrapper">
+            <div className="actual_dash_buttons">
+              <button
+                onClick={() => toggleSection("ecr")}
+                className={sections.ecr ? "actual_dash_buttonVisible" : ""}
+              >
+                Préparation aux ECR et certificat
+              </button>
+              <button
+                onClick={() => toggleSection("temoin")}
+                className={sections.temoin ? "actual_dash_buttonVisible" : ""}
+              >
+                Témoignages
+              </button>
+              <button
+                onClick={() => toggleSection("centre")}
+                className={sections.centre ? "actual_dash_buttonVisible" : ""}
+              >
+                Ouvrez votre centre mathOtop
+              </button>
+              <button
+                onClick={() => toggleSection("ecole")}
+                className={sections.ecole ? "actual_dash_buttonVisible" : ""}
+              >
+                Vie de l'école
+              </button>
+              <button
+                onClick={() => toggleSection("media")}
+                className={sections.media ? "actual_dash_buttonVisible" : ""}
+              >
+                Médias
+              </button>
+            </div>
+          </div>
+
+          <div className="actual_dash_content">
+            {Object.keys(sections).map((section) => {
+              if (sections[section]) {
+                return (
+                  <>
+                    {section === "ecr" && renderSection("ecr")}
+                    {section === "temoin" && renderSection("temoin")}
+                    {section === "centre" && renderSection("centre")}
+                    {section === "ecole" && renderSection("ecole")}
+                    {section === "media" && renderSection("media")}
+                  </>
+                );
+              }
+              return null;
+            })}
           </div>
         </div>
-
-        <div className="actual_dash_content">
-          {Object.keys(sections).map((section) => {
-            if (sections[section]) {
-              return (
-                <>
-                  {section === "ecr" && renderSection("ecr")}
-                  {section === "temoin" && renderSection("temoin")}
-                  {section === "centre" && renderSection("centre")}
-                  {section === "ecole" && renderSection("ecole")}
-                  {section === "media" && renderSection("media")}
-                </>
-              );
-            }
-            return null;
-          })}
-        </div>
       </div>
-    </div>
     </Dashboard>
-  
   );
 };
 

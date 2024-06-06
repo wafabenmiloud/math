@@ -6,14 +6,10 @@ const fs = require('fs');
 
 const addPost = async (req, res) => {
   try {
-    if (!req.file) {
-      return res.status(400).json({ errorMessage: "No file uploaded" });
-    }
-
     const { title, summary, content, type, date } = req.body;
     const { token } = req.cookies;
 
-    const imageURL = `${req.file.filename}`;
+    const imageURL = req.file ? `${req.file.filename}` : "";
 
     jwt.verify(token, process.env.JWT_SECRET, {}, async (err, info) => {
       if (err) throw err;

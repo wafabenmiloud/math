@@ -119,12 +119,12 @@ export default function EditSSection() {
         </label>
         {file && (
           <div>
-            <img src={URL.createObjectURL(file)} alt="Selected File" />
+            <img src={URL.createObjectURL(file)} alt="Selected File" style={{width:"100%"}}/>
           </div>
         )}
         {!file && (
           <div>
-            <img src={fileURL} alt="Selected File" />
+            <img src={fileURL} alt="Selected File" style={{width:"100%"}}/>
           </div>
         )}
  <button type="button" onClick={() => setShowPopup(true)}>

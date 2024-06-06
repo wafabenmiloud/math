@@ -83,9 +83,76 @@ try {
   
 };
 
+const getContactByID = async (req, res) => {
+  try {
+    const { token } = req.cookies;
 
+    if (!token) return res.status(401).json({ errorMessage: "Unauthorized" });
+    jwt.verify(token, process.env.JWT_SECRET, {}, async (err, info) => {
+      if (err) throw err;
+      const { id } = req.params;
+      const client = await dbConnect();
+      const ContactQuery = {
+        text: 'SELECT * FROM contact_messages WHERE id = $1',
+        values: [id],
+      };
+      const ContactResult = await client.query(ContactQuery);
+      client.release();
+      const contactDoc = ContactResult.rows[0];
+      res.json({
+        contactDoc
+      });
+
+
+    })
+
+  } catch (error) {
+    console.error('Error fetching Contact by ID:', error);
+    res.status(500).json({ errorMessage: 'Error fetching Contact by ID' });
+  }
+};
+const deleteContact = async (req, res) => {
+  try {
+    const { token } = req.cookies;
+    if (!token) return res.status(401).json({ errorMessage: "Unauthorized" });
+
+    jwt.verify(token, process.env.JWT_SECRET, {}, async (err, info) => {
+      if (err) throw err;
+      const { id } = req.params;
+
+      const client = await dbConnect();
+      try {
+        const ContactQuery = `
+            SELECT * FROM contact_messages WHERE id = $1;
+          `;
+        const ContactValues = [id];
+        const ContactResult = await client.query(ContactQuery, ContactValues);
+        const ContactDoc = ContactResult.rows[0];
+
+        if (!ContactDoc) {
+          return res.status(404).json("Contact not found");
+        }
+        const deleteQuery = `
+            DELETE FROM contact_messages WHERE id = $1;
+          `;
+        const deleteValues = [id];
+        await client.query(deleteQuery, deleteValues);
+
+        res.json({ message: "Contact deleted successfully" });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ errorMessage: "Error deleting Contact" });
+      } finally {
+        client.release();
+      }
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(401).json({ errorMessage: "Unauthorized" });
+  }
+};
 
 module.exports = {
   addContact,
-  getContact
+  getContact, getContactByID,deleteContact
 };

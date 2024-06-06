@@ -5,13 +5,12 @@ const router = express.Router();
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const { login, signUp, verifyCode, logout, authenticateToken } = require("./controllers/user_controller");
-const { addContact, getContact } = require("./controllers/contact_controller");
+const { addContact, getContact , getContactByID,deleteContact} = require("./controllers/contact_controller");
 const { addPost, updatePost, getPost, deletePost, getPostByID, uploadFile } = require('./controllers/actual_controller');
 const { addEx, updateEx, getEx, deleteEx, getExByID , deleteExFile} = require('./controllers/exercice_controller');
 const { addMethode, updateMethode, getMethode, deleteMethode, getMethodeByID } = require('./controllers/methode_controller');
 const { addQuiNous, updateQuiNous, getQuiNous, deleteQuiNous, getQuiNousByID } = require('./controllers/quinous_controller');
 const { addTarif, updateTarif, getTarif, deleteTarif, getTarifByID } = require('./controllers/tarif_controller');
-const { addItem, updateItem, getItem, getItemByID } = require('./controllers/navbar_controller');
 const { addQui, updateQui, getQui, deleteQui, getQuiByID, addQuiSec,
   updateQuiSec,
   getQuiSec, getQuiSecByID,
@@ -76,12 +75,6 @@ router.post("/signup", signUp);
 router.post('/verifycode', verifyCode);
 router.get('/logout', logout);
 router.get('/loggedIn', authenticateToken);
-
-//navbar API
-router.post("/item", addItem);
-router.put('/item', updateItem);
-router.get('/item', getItem);
-router.get('/item/:id', getItemByID);
 
 //home API
 router.post('/slides', addSlides)
@@ -156,5 +149,7 @@ router.get('/ex/:id', getExByID);
 //contact API
 router.post('/contact', addContact);
 router.get('/contact', getContact);
+//router.get('/contact/:id', getContactByID);
+router.delete('/contact/:id', deleteContact);
 
 module.exports = router;

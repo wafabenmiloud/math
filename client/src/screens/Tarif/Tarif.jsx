@@ -32,7 +32,7 @@ const Tarif = () => {
             <>
                 <div key={index} className="tarif_about_text">
                   <h4>{tarif.title}</h4>
-                  <div style={{display:"flex",flexDirection:"column"}} dangerouslySetInnerHTML={{ __html: tarif.content }} />
+                  <div className="tarifcontent" dangerouslySetInnerHTML={{ __html: tarif.content }} />
                 </div>
               <br />
               <br />

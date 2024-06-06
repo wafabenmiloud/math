@@ -44,7 +44,7 @@ const MethDash = () => {
         return (
           <>
             {" "}
-            <div key={index} style={{ border: "6px solid #b0d694" }}>
+            <div key={index} style={{ border: "4px solid #b0d694" }}>
               <div className="meth_dash_banner">
               <img
                     src={`/uploads/${methode.cover}`}

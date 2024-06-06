@@ -42,7 +42,6 @@ export default function CreatePost() {
     formData.append("summary", summary);
     formData.append("content", content);
     formData.append("file", file);
-
     try {
       const response = await axios.post("/api/post", formData, {
         headers: { "Content-Type": "multipart/form-data" },
@@ -54,6 +53,30 @@ export default function CreatePost() {
     } catch (error) {
       console.error("An error occurred:", error);
     }
+  }
+  async function valid() { 
+    if (!date) {
+      alert("Le champ Date est vide !");
+      return;
+    }
+    if (!title) {
+      alert("Le champ Titre est vide !");
+      return;
+    }
+     if (!summary) {
+      alert("Le champ Résumé est vide !");
+      return;
+    }
+    if (!type) {
+      alert("Le champ Type est vide !");
+      return;
+    }
+  
+    if (!content) {
+      alert("Le champ Description est vide !");
+      return;
+    }
+    setShowPopup(true);
   }
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -147,9 +170,7 @@ export default function CreatePost() {
         </div>
         <h2>
           Média{" "}
-          <span style={{ fontSize: "10px" }}>
-            (.jpg, .jpeg, .png, .gif)
-          </span>
+          <span style={{ fontSize: "10px" }}>(.jpg, .jpeg, .png, .gif)</span>
         </h2>
         <label htmlFor="fileInput">
           <MdAddToPhotos
@@ -167,12 +188,21 @@ export default function CreatePost() {
         {file && (
           <div>
             <p>{file.name}</p>
-            <img src={URL.createObjectURL(file)} alt="Selected File" />
+            <img
+              src={URL.createObjectURL(file)}
+              alt="Selected File"
+              style={{ width: "100%" }}
+            />
           </div>
         )}
         <h2>Description</h2>
         <Editor value={content} onChange={setContent} />
-        <button type="button" onClick={() => setShowPopup(true)}>
+        <button
+          type="button"
+          onClick={() => {
+            valid();
+          }}
+        >
           Ajouter
         </button>
       </form>

@@ -1,24 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Dashboard.css";
 import { Helmet } from "react-helmet";
 import Header from "../Header/Header";
-import { NavLink, Link, useLocation } from "react-router-dom";
-import { FaRegEdit } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 const Dashboard = ({ children }) => {
-  const { pathname } = useLocation();
-  const [dropdown, setDropdown] = useState(false);
-  const handleDropdown = (event) => {
-    setDropdown((current) => !current);
-  };
+
   return (
     <>
       <Helmet>
         <title>Admin | Dashboard</title>
-        <link
-          rel="canonical"
-          href="https://www.master-7rqtwti-luxgbhg4vwqu6.ovhcloud-fr-1.webpaas.ovh.net/dashboard"
-        />
       </Helmet>
       <div className="dashboard">
         <Header />
@@ -38,46 +29,7 @@ const Dashboard = ({ children }) => {
               Cours et tarifs
                
               </NavLink>
-              {/*        <div
-                onMouseEnter={handleDropdown}
-                onMouseLeave={handleDropdown}
-                className="dropdown_wrapper"
-              >
-                <Link
-                  to="#"
-                  className={
-                    pathname.includes("/quinousdash") ||
-                    pathname.includes("/tarifdash")
-                      ? "dashboard_buttonVisible active"
-                      : "dashboard_buttonVisible"
-                  }
-                >
-                  Organisation et tarifs{" "}
-               
-                </Link>
-
-                {dropdown && (
-                  <div className="dash_dropdown">
-                    <div className="col border">
-                      <NavLink
-                        className="dash_dropdown_buttonVisible"
-                        to="/quinousdash"
-                      >
-                        Qui sommes nous ?{" "}
-                       
-                      </NavLink>
-                      <NavLink
-                        className="dash_dropdown_buttonVisible"
-                        to="/tarifdash"
-                      >
-                        Cours et tarifs{" "}
-                        
-                      </NavLink>
-                    </div>{" "}
-                  </div>
-                )}
-              </div> */}
-      
+          
               <NavLink className="dashboard_buttonVisible" to="/quidash">
                 Pour qui ?{" "}
                
@@ -95,7 +47,7 @@ const Dashboard = ({ children }) => {
                
               </NavLink>
               <NavLink className="dashboard_buttonVisible" to="/contactdash">
-                Formulaire de contact
+              Boîte de messagerie
               </NavLink>
             </div>
             <div className="dashboard_footer none">

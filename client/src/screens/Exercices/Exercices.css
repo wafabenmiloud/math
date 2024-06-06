@@ -11,13 +11,10 @@
   line-height: 35px;
 }
 .ex_about_slider {
-  width: 60%;
+  width: 50%;
   padding: 25px 10px;
-  
-
   border: 4px solid #b0d694;
-  height: 500px;
-
+  min-height: 800px;
   justify-content: center;
   align-items: center;
 }
@@ -26,12 +23,12 @@
   margin: auto;
 }
 .ex_about_text {
-  width: 40%;
+  width: 50%;
   padding: 5px 15px;
   
 
   border: 4px solid #b0d694;
-  height: 500px;
+  min-height: 800px;
 }
 .ex_about_text p {
   color: #5d5d5f;

@@ -81,7 +81,30 @@ export default function EditPost() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
+  async function valid() { 
+    if (!date) {
+      alert("Le champ Date est vide !");
+      return;
+    }
+    if (!title) {
+      alert("Le champ Titre est vide !");
+      return;
+    }
+     if (!summary) {
+      alert("Le champ Résumé est vide !");
+      return;
+    }
+    if (!type) {
+      alert("Le champ Type est vide !");
+      return;
+    }
+  
+    if (!content) {
+      alert("Le champ Description est vide !");
+      return;
+    }
+    setShowPopup(true);
+  }
   return (
     <div className="create_form_wrapper">
       <BsArrowLeftShort onClick={() => setShowPopup2(true)} className="arr" />
@@ -183,10 +206,10 @@ export default function EditPost() {
         </label>
         {file && (
           <div>
-            <img src={URL.createObjectURL(file)} alt="Selected File" />
+            <img src={URL.createObjectURL(file)} alt="Selected File" style={{width:"100%"}}/>
           </div>
         )}
-        {!file && (
+        {!file && fileURL!="" && (
           <div
             style={{
               display: "flex",
@@ -194,14 +217,14 @@ export default function EditPost() {
               flexWrap: "wrap",
             }}
           >
-            <img src={fileURL} alt="Selected File" />
+            <img src={fileURL} alt="Selected File" style={{width:"100%"}}/>
           </div>
         )}
         <h2>Description</h2>
 
         <Editor value={content} onChange={setContent} />
 
-        <button type="button" onClick={() => setShowPopup(true)}>
+        <button type="button" onClick={() => valid()}>
           Modifier
         </button>
       </form>

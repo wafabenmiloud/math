@@ -43,10 +43,10 @@ const TarifDash = () => {
         {tarifs.map((tarif, index) => {
           return (
             <>
-              <div key={index} style={{ border: "6px solid #b0d694" }}>
+              <div key={index} style={{ border: "4px solid #b0d694" }}>
                 <div className="tarif_dash_about_text">
                   <h4>{tarif.title}</h4>
-                  <div dangerouslySetInnerHTML={{ __html: tarif.content }} />
+                  <div className="tarifcontent" dangerouslySetInnerHTML={{ __html: tarif.content }} />
                 </div>
                 <div className="control_buttons">
                   <div className="edit_button_wrapper">

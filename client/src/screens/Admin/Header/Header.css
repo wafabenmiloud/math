@@ -115,4 +115,8 @@ header .logo {
   .logout:hover {
     cursor: pointer;
   }
+  .logout{
+    color: #6bb13d;
+    border: 2px solid #6bb13d;
+    padding: 8px;  }
 }

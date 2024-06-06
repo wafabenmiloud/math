@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./PourQuiDash.css";
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import axios from "axios";
@@ -9,6 +9,8 @@ import Dashboard from "../Dashboard/Dashboard";
 import Popup from "../Popups/Popup";
 
 const PourQuiDash = () => {
+  const navigate = useNavigate();
+
   const [showPopup, setShowPopup] = useState(false);
   const [showPopup2, setShowPopup2] = useState(false);
   const [sectionIdToDelete, setSectionIdToDelete] = useState(null);
@@ -56,7 +58,17 @@ const PourQuiDash = () => {
       console.error(error);
     }
   }
-
+  const handleNavigation = (section) => {
+    navigate("/pourquisec", {
+      state: {
+        title0: section.title0,
+        bio: section.bio,
+        letter: section.letter,
+        title1: section.title1,
+        seccontent: section.seccontent,
+      },
+    });
+  };
   return (
     <Dashboard>
       <h2>Pour qui ?</h2>
@@ -76,7 +88,7 @@ const PourQuiDash = () => {
           return (
             <>
               {" "}
-              <div style={{ border: "6px solid #b0d694" }} key={index}>
+              <div style={{ border: "4px solid #b0d694" }} key={index}>
                 <div className="pour_qui_dash_banner">
                   <img src={`/uploads/${q.cover}`} alt="cover" />{" "}
                 </div>
@@ -129,24 +141,23 @@ const PourQuiDash = () => {
               <div
                 className="pour_qui_dash_wrapper"
                 key={index}
-                style={{ border: "6px solid #b0d694" }}
+                style={{ border: "4px solid #b0d694" }}
               >
                 <div className="pour_qui_dash_about_text">
                   <div className="pour_qui_dash_title">
                     <h1>{sec.letter}</h1>
                     <h4>{sec.title}</h4>
                   </div>
-                  <div dangerouslySetInnerHTML={{ __html: sec.content }} />
+                  <div className="pour_qui_dash_content" dangerouslySetInnerHTML={{ __html: sec.content }} />
                 </div>
-                <Link to={`/${sec.lien}`} className="aa">
+                <button className="aa" onClick={() => handleNavigation(sec)}>
                   {sec.button}
-                </Link>{" "}
+                </button>
                 <div className="control_buttons">
                   <div className="edit_button_wrapper">
                     <Link to={`/editquisec/${sec.id}`}>
                       <FaRegEdit size={20} className="edit_button" />
                     </Link>{" "}
-                    
                   </div>
                   <div className="delete_button_wrapper">
                     <MdDelete
@@ -157,7 +168,6 @@ const PourQuiDash = () => {
                         setSsectionIdToDelete(sec.id); // Set the ssection id to delete
                       }}
                     />
-                    
                   </div>
                 </div>
               </div>

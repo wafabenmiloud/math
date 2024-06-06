@@ -44,7 +44,7 @@ const QuiNousDash = () => {
         {quinous.map((data, index) => {
           return (
             <>
-              <div key={index} style={{ border: "6px solid #b0d694" }}>
+              <div key={index} style={{ border: "4px solid #b0d694" }}>
                 <div className="qui_dash_wrapper">
                   <div className="qui_dash_about_text">
                     <h4>{data.title}</h4>

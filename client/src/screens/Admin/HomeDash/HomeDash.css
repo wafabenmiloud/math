@@ -103,10 +103,11 @@
   background-size: cover;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   gap: 0px;
-  min-height: 600px;
+  min-height: 580px;
+
 }
 .home_dash_wrapper2 .a {
   background-color: #6bb13d;
@@ -191,6 +192,7 @@ grid-template-columns: 1fr 1fr 1fr;
   .home_dash_wrapper2 {
     background-image: none;
     width: 70%;
+    min-height: auto;
   }
   .home_dash_wrapper2 .a {
     background-color: #6bb13d;

@@ -1,7 +1,7 @@
 .layout_button {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 10px;
+  margin-top: 20px;
 }
 .layout_button button {
   background-color: #1877f2;
@@ -22,10 +22,11 @@
   color: white;
   padding: 5px 20px;
   border-radius: 50px 25px 50px 25px;
-  font-size: 16px;
+  font-size: 14px;
   display: flex;
   flex-direction: row;
   gap: 10px;
+  width: 170px;
 }
 .navbar_ro {
   display: flex;
@@ -35,8 +36,8 @@
   padding: 10px 25px;
   border-radius: 200px;
   align-self: flex-end;
-  width: 100%;
-  gap: 20px;
+  width: 600px;
+  gap: 0px;
 }
 
 .nav_wrapper {
@@ -46,6 +47,7 @@
   align-items: flex-end;
   margin: auto;
   z-index: 9999;
+  width: 103%;
 }
 nav {
   width: 100%;
@@ -55,7 +57,7 @@ nav {
   flex-direction: row;
   align-items: center;
   list-style: none;
-  gap: 40px;
+  gap: 10px;
   margin: auto;
 }
 .navbar__link {
@@ -82,10 +84,10 @@ nav {
   width: 100%;
 }
 .navbar__link:hover {
-  text-decoration: underline 6px solid #bcd48c !important;
+  text-decoration: underline 4px solid #bcd48c !important;
 }
 .navbar__link.active {
-  text-decoration: underline 6px solid #bcd48c !important;
+  text-decoration: underline 4px solid #bcd48c !important;
 }
 
 .navbar__link2 img {
@@ -128,7 +130,7 @@ nav {
   border: none !important;
 }
 .dropdown .navbar__link:hover {
-  text-decoration: underline 6px solid #bcd48c !important;
+  text-decoration: underline 4px solid #bcd48c !important;
 }
 .navbar__btn {
   width: max-content;
@@ -156,10 +158,13 @@ nav {
 
 @media screen and (max-width: 1080px) {
   .nav_column {
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
   .nav_buttons {
     flex-direction: column;
+  }
+  .layout_button2 a {
+    margin-left: 30px;
   }
   .nav_wrapper {
     background: transparent;
@@ -167,6 +172,7 @@ nav {
     margin: 0;
     align-items: flex-start;
     justify-content: space-between;
+    width: 100%;
   }
 
   .navbar__menu {
@@ -174,6 +180,7 @@ nav {
     justify-content: flex-start;
     align-items: flex-start;
     margin: 0;
+    padding: 10px 0;
     gap: 0;
   }
   .navbar_ro {
@@ -183,6 +190,7 @@ nav {
     align-items: flex-start;
     margin-top: 35px;
     gap: 0;
+    width: 100%;
   }
 
   .navbar__btn {

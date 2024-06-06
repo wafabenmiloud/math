@@ -216,7 +216,7 @@ const HomeDash = () => {
               <div
                 key={index}
                 style={{
-                  border: "6px solid #b0d694",
+                  border: "4px solid #b0d694",
                   width: "95%",
                   margin: "auto",
                 }}
@@ -298,7 +298,7 @@ const HomeDash = () => {
             <div
               className="home_dash_wrapper2"
               key={index}
-              style={{ border: "6px solid #b0d694" }}
+              style={{ border: "4px solid #b0d694" }}
             >
               <div className="home_dash_about_text2">
                 <h4>{ssec.title}</h4>

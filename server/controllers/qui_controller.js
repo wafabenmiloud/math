@@ -188,7 +188,7 @@ const deleteQui = async (req, res) => {
 const addQuiSec= async (req, res) => {
   try {
 
-    const { title, content, letter, lien, button } = req.body;
+    const { title, content, letter, lien, button, title0, bio, title1, seccontent } = req.body;
     const { token } = req.cookies;
 
     jwt.verify(token, process.env.JWT_SECRET, {}, async (err, info) => {
@@ -202,16 +202,20 @@ const addQuiSec= async (req, res) => {
             content TEXT,
             lien TEXT,
             letter TEXT,
-            button TEXT
+            button TEXT,
+            title0 TEXT,
+            bio TEXT,
+            title1 TEXT,
+            seccontent TEXT
           );
         `);
 
         const query = `
-          INSERT INTO qui_section (title, content, letter, lien, button)
-          VALUES ($1, $2, $3, $4, $5)
+          INSERT INTO qui_section (title, content, letter, lien, button, title0, bio, title1, seccontent)
+          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
           RETURNING *;
         `;
-        const values = [title, content, letter,lien, button];
+        const values = [title, content, letter,lien, button, title0, bio, title1, seccontent];
         const result = await client.query(query, values);
         const quiSecDoc = result.rows[0];
         res.json(quiSecDoc);
@@ -234,7 +238,7 @@ const updateQuiSec = async (req, res) => {
 
     jwt.verify(token, process.env.JWT_SECRET, {}, async (err, info) => {
       if (err) throw err;
-      const { id, title, content, letter, lien, button } = req.body;
+      const { id, title, content, letter, lien, button, title0, bio, title1, seccontent } = req.body;
 
       const client = await dbConnect();
       try {
@@ -249,11 +253,11 @@ const updateQuiSec = async (req, res) => {
         }
         const updateQuery = `
             UPDATE qui_section
-            SET title = $1, content = $2, letter = $3, lien = $4, button = $5
-            WHERE id = $6
+            SET title = $1, content = $2, letter = $3, lien = $4, button = $5, title0 = $6, bio = $7, title1 = $8, seccontent = $9 
+            WHERE id = $10
             RETURNING *;
           `;
-        const updateValues = [title, content, letter,lien,button, id];
+        const updateValues = [title, content, letter,lien,button,title0, bio, title1, seccontent, id];
         const updatedResult = await client.query(updateQuery, updateValues);
         const updatedquiSecDoc = updatedResult.rows[0];
         res.json(updatedquiSecDoc);

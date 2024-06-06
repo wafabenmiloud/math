@@ -78,7 +78,7 @@ export default function CreateQuiNous() {
         {file && (
           <div>
             <p>{file.name}</p>
-            <img src={URL.createObjectURL(file)} alt="Selected File" />
+            <img src={URL.createObjectURL(file)} alt="Selected File" style={{width:"100%"}}/>
           </div>
         )}
         <h2>Description</h2>

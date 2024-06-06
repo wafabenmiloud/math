@@ -28,12 +28,6 @@ const Navbar = () => {
             Suivre 164
           </button>
         </div>
-        <div className="layout_button2">
-          <Link to="/contact">
-            <GiRotaryPhone size={20} />
-            Contactez-nous
-          </Link>
-        </div>
       </div>
       <div className="nav_wrapper">
         <li>
@@ -52,7 +46,8 @@ const Navbar = () => {
               <li onMouseEnter={handleDropdown} onMouseLeave={handleDropdown}>
                 <Link
                   className={
-                    pathname.includes("/quisommesnous") || pathname.includes("/tarif")
+                    pathname.includes("/quisommesnous") ||
+                    pathname.includes("/tarif")
                       ? "navbar__link active"
                       : "navbar__link"
                   }
@@ -107,7 +102,13 @@ const Navbar = () => {
                   Exercices
                 </NavLink>
               </li>
-            </div>
+             
+            </div> <div className="layout_button2">
+                <Link to="/contact">
+                  <GiRotaryPhone size={20} />
+                  Contactez-nous
+                </Link>
+              </div>
           </div>
           <button className="navbar__btn close" onClick={showNavbar}>
             <FaTimes color="#558b3d" />

@@ -137,7 +137,7 @@
 
 .dash_dropdown_buttonVisible:hover,
 .dash_dropdown_buttonVisible.active {
-  text-decoration: underline 6px solid #bcd48c !important;
+  text-decoration: underline 4px solid #bcd48c !important;
 }
 .control_buttons {
   display: flex;

@@ -1,4 +1,3 @@
-
 .pour_qui_about_text {
   width: 100%;
 }
@@ -47,25 +46,25 @@
 
 .pour_qui_wrapper {
   width: 100%;
-  margin: auto;
   text-align: start;
   padding: 35px 10px 5px 20px;
-
   border: 4px solid #b0d694;
-
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 0px;
-  min-height: 600px;
+  align-items: center;
+  min-height: 500px;
+  position: relative;
+}
+.pour_qui_content {
+  position: absolute;
+  top: 120px;
 }
 .pour_qui_section_wrapper {
   width: 100%;
   margin: auto;
   text-align: start;
   padding: 35px 10px 5px 20px;
-  
+
   border: 4px solid #b0d694;
 
   display: flex;
@@ -75,7 +74,7 @@
   gap: 0px;
   height: 100%;
 }
-.pour_qui_wrapper a,
+.pour_qui_wrapper button,
 .pour_qui_bio a,
 .pour_qui_section_wrapper a {
   background-color: #6bb13d;
@@ -86,15 +85,19 @@
   font-family: "Roboto", serif;
   margin: 15px 0;
 }
+.pour_qui_wrapper button {
+  position: absolute;
+  bottom: 0;
+}
 .arrow {
   background-color: transparent !important;
-  color: #6bb13d !important
-    ;
+  color: #6bb13d !important;
   padding: 0px !important;
   border-radius: 0px !important;
   font-size: 80px !important;
   margin: 0 !important;
   font-weight: 300 !important;
+  cursor: pointer;
 }
 .pour_qui_contact {
   width: 100%;
@@ -103,7 +106,7 @@
   padding: 5px 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
+  gap: 20px;
   align-items: center;
 }
 .pour_qui_title {
@@ -112,7 +115,8 @@
   justify-content: center;
   align-items: center;
   gap: 15px;
-  height: 70px;
+  position: absolute;
+  top: 0;
 }
 @media (max-width: 1080px) {
   .pour_qui_about_text h4 {
@@ -129,13 +133,10 @@
     font-size: 14px;
   }
 
- 
-
   .pour_qui_contact {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    
   }
   .pour_qui_title {
     justify-content: flex-start;

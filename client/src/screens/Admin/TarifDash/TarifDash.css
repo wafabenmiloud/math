@@ -45,7 +45,12 @@
   line-height: 20px;
   width: 55%;
 }
-
+.tarifcontent a {
+  text-decoration: underline;
+  padding: 6px 30px;
+  border-radius: 50px 25px 50px 25px;
+  
+}
 @media (max-width: 1080px) {
   .tarif_dash_about_text .a {
     font-size: 16px;

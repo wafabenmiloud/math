@@ -67,75 +67,52 @@ const ExDash = () => {
       {exercices.map((exercise, index) => {
         return (
           <>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                gap: "15px",
-              }}
-            >
-              <div
-                key={index}
-                style={{ border: "6px solid #b0d694", width: "100%" }}
-              >
-                <div className="bio_wrapper">
-                  <h3 className="ex_dash_bio">{exercise.title}</h3>
+            <div key={index}>
+              <h2 className="ex_dash_bio">{exercise.title}</h2>
+              <br />
+              <br />
+              <div className="ex_dash_wrapper">
+                <div className="ex_dash_about_text">
+                  <div dangerouslySetInnerHTML={{ __html: exercise.content }} />
                 </div>
-                <br />
-                <br />{" "}
-                <div className="exr_dash_wrapper">
-                  <div className="ex_dash_wrapper">
-                    <div className="ex_dash_about_text">
-                      <div
-                        dangerouslySetInnerHTML={{ __html: exercise.content }}
-                      />
-                    </div>
-                    <div className="ex_dash_about_slider">
-                      <Slider {...settings} initialSlide={currentSlides[index]}>
-                        {exercise.files.map((image, imageIndex) => (
-                          <div key={imageIndex}>
-                            <div
-                              className={`imagecontainer ${
-                                imageIndex === currentSlides[index]
-                                  ? "active"
-                                  : ""
-                              }`}
-                            >
-                              <img
-                                src={`/uploads/${image}`}
-                                alt="image_exercice"
-                              />
-                            </div>
-                          </div>
-                        ))}
-                      </Slider>
-                      <br />
-                    </div>
-                  </div>
-                </div>{" "}
-                <div className="control_buttons">
-                  <div className="edit_button_wrapper">
-                    <Link to={`/editex/${exercise.id}`}>
-                      <FaRegEdit size={20} className="edit_button" />
-                    </Link>{" "}
-                  </div>
-                  <div className="delete_button_wrapper">
-                    <MdDelete
-                      size={20}
-                      className="delete_button"
-                      onClick={() => {
-                        setShowPopup(true);
-                        setSectionIdToDelete(exercise.id);
-                      }}
-                    />
-                  </div>
+                <div className="ex_dash_about_slider">
+                  <Slider {...settings} initialSlide={currentSlides[index]}>
+                    {exercise.files.map((image, imageIndex) => (
+                      <div key={imageIndex}>
+                        <div
+                          className={`imagecontainer ${
+                            imageIndex === currentSlides[index] ? "active" : ""
+                          }`}
+                        >
+                          <img src={`/uploads/${image}`} alt="image_exercice" />
+                        </div>
+                      </div>
+                    ))}
+                  </Slider>
                 </div>
-                <br />
-                <br />
-              </div>{" "}
+              </div>
+              <br /><br />
+              <div className="control_buttons">
+                <div className="edit_button_wrapper">
+                  <Link to={`/editex/${exercise.id}`}>
+                    <FaRegEdit size={20} className="edit_button" />
+                  </Link>{" "}
+                </div>
+                <div className="delete_button_wrapper">
+                  <MdDelete
+                    size={20}
+                    className="delete_button"
+                    onClick={() => {
+                      setShowPopup(true);
+                      setSectionIdToDelete(exercise.id);
+                    }}
+                  />
+                </div>
+              </div>
+              <br />
+              <br />{" "}
             </div>
+            <div></div>
             <br />
             <br />
           </>

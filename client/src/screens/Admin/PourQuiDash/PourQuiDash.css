@@ -1,6 +1,6 @@
-
 .pour_qui_dash_about_text {
   width: 100%;
+  flex: 1;
 }
 .pour_qui_dash_banner {
   width: 100%;
@@ -47,35 +47,24 @@
 
 .pour_qui_dash_wrapper {
   width: 100%;
-  margin: auto;
   text-align: start;
   padding: 35px 10px 5px 20px;
-  background-repeat: no-repeat;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background-position: center;
-
+  min-height: 500px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  position: relative;
   align-items: center;
-  gap: 0px;
-min-height: 600px;
 }
+.pour_qui_dash_content{
+  position: absolute;
+  top: 120px;
+}
+
 .pour_qui_dash_section_wrapper {
   width: 100%;
   margin: auto;
   text-align: start;
   padding: 35px 10px 5px 20px;
-  background-repeat: no-repeat;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background-position: center;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -83,7 +72,7 @@ min-height: 600px;
   gap: 0px;
   height: 100%;
 }
-.pour_qui_dash_wrapper .aa , 
+.pour_qui_dash_wrapper .aa,
 .pour_qui_dash_section_wrapper a {
   background-color: #6bb13d !important;
   color: white;
@@ -92,6 +81,10 @@ min-height: 600px;
   font-size: 14px;
   font-family: "Roboto", serif;
   margin: 15px 0;
+}
+.pour_qui_dash_wrapper .aa{
+  position: absolute;
+  bottom: 50px;
 }
 .arrow {
   background-color: transparent !important;
@@ -110,7 +103,7 @@ min-height: 600px;
   padding: 5px 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
+  gap: 20px;
   align-items: center;
 }
 .pour_qui_dash_title {
@@ -119,7 +112,8 @@ min-height: 600px;
   justify-content: center;
   align-items: center;
   gap: 15px;
-  height: 70px;
+  position: absolute;
+  top: 0;
 }
 .pourqui_layout {
   padding: 40px 60px;
@@ -128,12 +122,16 @@ min-height: 600px;
   background-image: url(../../../assets/layout.svg);
   height: fit-content;
   width: 1200px;
-  
 }
-@media (max-width:1200px) {
-  .pourqui_layout{width: 100%;
+@media (max-width: 1200px) {
+  .pourqui_layout {
+    width: 100%;
     padding: 0px 10px;
-}
+  }
+  .pour_qui_dash_wrapper {
+    background-image: none;
+    min-height: 600px;
+  }
 }
 @media (max-width: 1080px) {
   .pour_qui_dash_about_text h4 {
@@ -150,9 +148,6 @@ min-height: 600px;
     font-size: 14px;
   }
 
-  .pour_qui_dash_wrapper {
-    background-image: none;
-  }
   .pour_qui_dash_section_wrapper {
     background-image: none;
   }
@@ -162,7 +157,6 @@ min-height: 600px;
     flex-direction: column;
     gap: 10px;
     height: fit-content;
-    
   }
   .pour_qui_dash_title {
     justify-content: flex-start;

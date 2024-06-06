@@ -1,4 +1,12 @@
-
+.tarifcontent{
+  display: flex;
+  flex-direction: column;
+}
+.tarifcontent a{
+  text-decoration: underline;
+  padding: 6px 30px;
+  border-radius: 50px 25px 50px 25px;
+}
 .tarif_about_text {
   width: 100%;
   margin: auto;
@@ -16,6 +24,7 @@
   font-style: normal;
   font-weight: 400;
   text-decoration: underline;
+
 }
 .tarif_about_text .button {
   background-color: #95c761;
